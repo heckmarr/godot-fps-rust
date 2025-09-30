@@ -1,0 +1,4 @@
+*.save
+*.uid
+/rust/target
+/godot/.godot

@@ -64,7 +64,8 @@ impl Player {
 
 	#[signal]
 	fn dorp();
-	fn process_input(&mut self, event: Gd<InputEvent>) {
+	fn process_input(&mut self, _event: Gd<InputEvent>) {
+		let mut event = Input::singleton();
 		self.dir = Vector3::ZERO;
 		let camera: Gd<Camera3D> = self.base().get_node_as("/root/Testing_Area/Player/Rotation_Helper/Camera");
 		let cam_xform = camera.get_global_transform();
@@ -99,13 +100,12 @@ impl Player {
 		}
 
 		//capture/free the cursor
-		let mut input = Input::singleton();
 		if event.is_action_pressed("ui_cancel") {
-			let mm = input.get_mouse_mode();
+			let mm = event.get_mouse_mode();
 			if mm == MouseMode::VISIBLE {
-				input.set_mouse_mode(MouseMode::CAPTURED);
+				event.set_mouse_mode(MouseMode::CAPTURED);
 			}else {
-				input.set_mouse_mode(MouseMode::VISIBLE);
+				event.set_mouse_mode(MouseMode::VISIBLE);
 			}
 		}
 

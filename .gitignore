@@ -2,3 +2,4 @@
 *.uid
 /rust/target
 /godot/.godot
+/godot/.import

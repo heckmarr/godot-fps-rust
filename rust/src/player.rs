@@ -101,6 +101,7 @@ impl Player {
 
 		//capture/free the cursor
 		if event.is_action_pressed("ui_cancel") {
+			//These three calls are the only ones that need Input rather than InputEvent
 			let mm = event.get_mouse_mode();
 			if mm == MouseMode::VISIBLE {
 				event.set_mouse_mode(MouseMode::CAPTURED);

@@ -6,9 +6,11 @@ use godot::classes::ICharacterBody3D;
 use godot::classes::Camera3D;
 use godot::classes::Input;
 use godot::classes::InputEvent;
+use godot::classes::InputEventMouseMotion;
 use godot::classes::input::MouseMode;
 
 use godot::global::deg_to_rad;
+use godot::global::clamp;
 
 #[derive(GodotClass)]
 #[class(base=CharacterBody3D)]
@@ -54,6 +56,30 @@ impl ICharacterBody3D for Player {
 	}
 	fn unhandled_input(&mut self, event: Gd<InputEvent>) {
 		self.process_input(event);
+	}
+	fn input(&mut self, event: Gd<InputEvent>) {
+		let input = Input::singleton();
+		let event_mouse = event.try_cast::<InputEventMouseMotion>();
+
+		match event_mouse {
+			Ok(event) => {
+				let mm = input.get_mouse_mode();
+				if mm == MouseMode::CAPTURED {
+					let mut rot_helper: Gd<Node3D> = self.base_mut().get_node_as("/root/Testing_Area/Player/Rotation_Helper");
+					let rel = event.get_relative();
+					let ms = self.mouse_sensitivity;
+					rot_helper.rotate_x(deg_to_rad((rel.y * ms).into()) as f32);
+					self.base_mut().rotate_y(deg_to_rad((rel.x * ms * -1.0).into()) as f32);
+					let mut camera_rot = rot_helper.get_rotation_degrees();
+					camera_rot.x = clamp(&(camera_rot.x).to_variant(), &(-70).to_variant(), &(70).to_variant()).to::<f32>();
+					rot_helper.set_rotation_degrees(camera_rot);
+				}
+			},
+			Err(_err) => {
+				//pass
+			},
+		}
+
 	}
 
 

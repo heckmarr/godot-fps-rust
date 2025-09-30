@@ -4,6 +4,7 @@ use godot::classes::CharacterBody3D;
 use godot::classes::ICharacterBody3D;
 
 use godot::classes::Camera3D;
+use godot::classes::SpotLight3D;
 use godot::classes::Input;
 use godot::classes::InputEvent;
 use godot::classes::InputEventMouseMotion;
@@ -15,6 +16,9 @@ use godot::global::clamp;
 #[derive(GodotClass)]
 #[class(base=CharacterBody3D)]
 struct Player {
+	max_sprint_speed: i64,
+	sprint_accel: i64,
+	is_sprinting: bool,
 	gravity: f32,
 	vel: Vector3,
 	max_speed: i64,
@@ -31,6 +35,9 @@ impl ICharacterBody3D for Player {
 
 	fn init(base: Base<CharacterBody3D>) -> Self {
 		Self {
+			max_sprint_speed: 30,
+			sprint_accel: 18,
+			is_sprinting: false,
 			gravity: -24.8,
 			vel: Vector3::new(0.0, 0.0, 0.0),
 			max_speed: 20,
@@ -114,7 +121,23 @@ impl Player {
 		}
 		if input_movement_vector != Vector2::ZERO {
 			input_movement_vector = input_movement_vector.normalized();
+			if event.is_action_pressed("movement_sprint") {
+				self.is_sprinting = true;
+			}else {
+				self.is_sprinting = false;
+			}
 		}
+		if event.is_action_just_pressed("flashlight") {
+			let mut flashlight: Gd<SpotLight3D> = self.base_mut().get_node_as("/root/Testing_Area/Player/Rotation_Helper/Flashlight");
+			let flash = flashlight.is_visible_in_tree();
+			godot_print!("Flashlight is visible! {flash}");
+			if flashlight.is_visible_in_tree() {
+				flashlight.set_visible(false);
+			}else {
+				flashlight.set_visible(true);
+			}
+		}
+
 		dir += -cam_xform.basis.col_c().normalized() * input_movement_vector.y;
 		dir += cam_xform.basis.col_a().normalized() * input_movement_vector.x;
 
@@ -149,11 +172,18 @@ impl Player {
 		hvel.y = 0.0;
 
 		let mut target = self.dir;
-		target *= self.max_speed as f32;
-
+		if self.is_sprinting {
+			target *= self.max_sprint_speed as f32;
+		}else {
+			target *= self.max_speed as f32;
+		}
 		let mut accel = 0.0;
 		if self.dir.dot(hvel) > 0.0 {
-			accel = self.accel as f32;
+			if self.is_sprinting {
+				accel = self.sprint_accel as f32;
+			}else {
+				accel = self.accel as f32;
+			}
 		}else {
 			accel = self.deaccel as f32;
 		}

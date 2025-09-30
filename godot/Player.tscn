@@ -494,7 +494,6 @@ mesh = SubResource("23")
 
 [node name="Flashlight" type="SpotLight3D" parent="Rotation_Helper"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.307539, -0.0646362)
-visible = false
 light_color = Color(1, 0.915375, 0.769531, 1)
 light_energy = 0.8
 light_bake_mode = 1
@@ -511,6 +510,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Crosshair" type="Control" parent="HUD"]
 modulate = Color(1, 1, 1, 0.705882)

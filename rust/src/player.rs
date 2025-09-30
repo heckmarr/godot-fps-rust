@@ -5,6 +5,7 @@ use godot::classes::ICharacterBody3D;
 
 use godot::classes::Camera3D;
 use godot::classes::Input;
+use godot::classes::InputEvent;
 use godot::classes::input::MouseMode;
 
 use godot::global::deg_to_rad;
@@ -49,8 +50,10 @@ impl ICharacterBody3D for Player {
 		self.signals().dorp().emit();
 	}
 	fn physics_process(&mut self, delta: f32) {
-		self.process_input(delta);
 		self.process_movement(delta);
+	}
+	fn unhandled_input(&mut self, event: Gd<InputEvent>) {
+		self.process_input(event);
 	}
 
 
@@ -61,55 +64,57 @@ impl Player {
 
 	#[signal]
 	fn dorp();
-	fn process_input(&mut self, delta: f32) {
-		self.dir = Vector3::new(0.0, 0.0, 0.0);
+	fn process_input(&mut self, event: Gd<InputEvent>) {
+		self.dir = Vector3::ZERO;
 		let camera: Gd<Camera3D> = self.base().get_node_as("/root/Testing_Area/Player/Rotation_Helper/Camera");
 		let cam_xform = camera.get_global_transform();
 
-		let mut input_movement_vector: Vector2 = Vector2::new( 0.5, 0.5);
-		let mut inp = Input::singleton();
+		let mut input_movement_vector: Vector2 = Vector2::ZERO;
+//		let mut inp = Input::singleton();
 
-		if inp.is_action_pressed("movement_forward") {
+		if event.is_action_pressed("movement_forward") {
 			godot_print!("Move forward!");
 			input_movement_vector.y += 1.0;
-		}else if inp.is_action_pressed("movement_backward") {
+		}else if event.is_action_pressed("movement_backward") {
 			godot_print!("Move backward!");
 			input_movement_vector.y -= 1.0;
-		}else if inp.is_action_pressed("movement_left") {
+		}else if event.is_action_pressed("movement_left") {
 			godot_print!("Move left!");
 			input_movement_vector.x -= 1.0;
-		}else if inp.is_action_pressed("movement_right") {
+		}else if event.is_action_pressed("movement_right") {
 			godot_print!("Move right!");
 			input_movement_vector.x = 1.0;
 		}
-
-		input_movement_vector = input_movement_vector.normalized();
-
+		if input_movement_vector != Vector2::ZERO {
+			input_movement_vector = input_movement_vector.normalized();
+		}
 		self.dir += -cam_xform.basis.col_c().normalized() * input_movement_vector.y;
 		self.dir += cam_xform.basis.col_a().normalized() * input_movement_vector.x;
 
 		//jump!
 		if self.base().is_on_floor() {
-			if inp.is_action_just_pressed("movement_jump") {
+			if event.is_action_pressed("movement_jump") {
 				self.vel.y = self.jump_speed as f32;
 			}
 		}
 
 		//capture/free the cursor
-		if inp.is_action_just_pressed("ui_cancel") {
-			let mm = inp.get_mouse_mode();
+		let mut input = Input::singleton();
+		if event.is_action_pressed("ui_cancel") {
+			let mm = input.get_mouse_mode();
 			if mm == MouseMode::VISIBLE {
-				inp.set_mouse_mode(MouseMode::CAPTURED);
+				input.set_mouse_mode(MouseMode::CAPTURED);
 			}else {
-				inp.set_mouse_mode(MouseMode::VISIBLE);
+				input.set_mouse_mode(MouseMode::VISIBLE);
 			}
 		}
 
 	}
 	fn process_movement(&mut self, delta: f32) {
 		self.dir.y = 0.0;
-		self.dir = self.dir.normalized();
-	
+		if self.dir != Vector3::ZERO {
+			self.dir = self.dir.normalized();
+		}
 		self.vel.y += delta*self.gravity;
 
 		let mut hvel = self.vel;

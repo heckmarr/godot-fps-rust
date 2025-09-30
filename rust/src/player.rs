@@ -129,9 +129,9 @@ impl Player {
 		}
 		if event.is_action_just_pressed("flashlight") {
 			let mut flashlight: Gd<SpotLight3D> = self.base_mut().get_node_as("/root/Testing_Area/Player/Rotation_Helper/Flashlight");
-			let flash = flashlight.is_visible_in_tree();
+			let flash = flashlight.is_visible();
 			godot_print!("Flashlight is visible! {flash}");
-			if flashlight.is_visible_in_tree() {
+			if flash {
 				flashlight.set_visible(false);
 			}else {
 				flashlight.set_visible(true);

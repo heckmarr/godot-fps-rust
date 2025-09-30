@@ -445,6 +445,7 @@ bones/33/rotation = Quaternion(0, 0, -1.192095e-07, 1)
 bones/33/scale = Vector3(1, 1, 1)
 
 [node name="GodotBattleBot" type="MeshInstance3D" parent="Rotation_Helper/Model/Armature/Skeleton"]
+visible = false
 cast_shadow = 0
 mesh = SubResource("6")
 

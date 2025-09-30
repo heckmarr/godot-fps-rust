@@ -6,3 +6,4 @@ struct Thinger;
 unsafe impl ExtensionLibrary for Thinger {}
 
 mod dorp;
+mod player;

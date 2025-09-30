@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bwvlifutygybj"]
 
-[ext_resource type="PackedScene" path="res://Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bkuke680elxiv" path="res://Player.tscn" id="1"]
 
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(80, 80)
@@ -261,5 +261,3 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/GreenCube6"]
 mesh = SubResource("9")
-
-[node name="Dorper" type="Dorper" parent="."]

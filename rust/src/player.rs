@@ -7,18 +7,20 @@ use godot::classes::Camera3D;
 use godot::classes::Input;
 use godot::classes::input::MouseMode;
 
+use godot::global::deg_to_rad;
+
 #[derive(GodotClass)]
 #[class(base=CharacterBody3D)]
 struct Player {
-	gravity: f64,
+	gravity: f32,
 	vel: Vector3,
 	max_speed: i64,
 	jump_speed: i64,
-	accel: f64,
+	accel: f32,
 	dir: Vector3,
 	deaccel: i64,
 	max_slope_angle: i64,
-	mouse_sensitivity: f64,
+	mouse_sensitivity: f32,
 	base: Base<CharacterBody3D>
 }
 #[godot_api]
@@ -46,7 +48,7 @@ impl ICharacterBody3D for Player {
 		self.signals().dorp().connect_self(Player::dorping);
 		self.signals().dorp().emit();
 	}
-	fn physics_process(&mut self, delta: f64) {
+	fn physics_process(&mut self, delta: f32) {
 		self.process_input(delta);
 		self.process_movement(delta);
 	}
@@ -59,21 +61,25 @@ impl Player {
 
 	#[signal]
 	fn dorp();
-	fn process_input(&mut self, delta: f64) {
+	fn process_input(&mut self, delta: f32) {
 		self.dir = Vector3::new(0.0, 0.0, 0.0);
 		let camera: Gd<Camera3D> = self.base().get_node_as("/root/Testing_Area/Player/Rotation_Helper/Camera");
 		let cam_xform = camera.get_global_transform();
 
-		let mut input_movement_vector: Vector2 = Vector2::new( 0.0, 0.0);
+		let mut input_movement_vector: Vector2 = Vector2::new( 0.5, 0.5);
 		let mut inp = Input::singleton();
 
 		if inp.is_action_pressed("movement_forward") {
+			godot_print!("Move forward!");
 			input_movement_vector.y += 1.0;
 		}else if inp.is_action_pressed("movement_backward") {
+			godot_print!("Move backward!");
 			input_movement_vector.y -= 1.0;
 		}else if inp.is_action_pressed("movement_left") {
+			godot_print!("Move left!");
 			input_movement_vector.x -= 1.0;
 		}else if inp.is_action_pressed("movement_right") {
+			godot_print!("Move right!");
 			input_movement_vector.x = 1.0;
 		}
 
@@ -100,8 +106,32 @@ impl Player {
 		}
 
 	}
-	fn process_movement(&mut self, delta: f64) {
-		godot_print!("It's moving!");
+	fn process_movement(&mut self, delta: f32) {
+		self.dir.y = 0.0;
+		self.dir = self.dir.normalized();
+	
+		self.vel.y += delta*self.gravity;
+
+		let mut hvel = self.vel;
+		hvel.y = 0.0;
+
+		let mut target = self.dir;
+		target *= self.max_speed as f32;
+
+		let mut accel = 0.0;
+		if self.dir.dot(hvel) > 0.0 {
+			accel = self.accel as f32;
+		}else {
+			accel = self.deaccel as f32;
+		}
+		hvel = hvel.lerp(target, accel*delta);
+		self.vel.x = hvel.x;
+		self.vel.z = hvel.z;
+		let target_vel = self.vel;
+		self.base_mut().set_velocity(target_vel);
+		self.base_mut().move_and_slide();
+//		self.vel = self.base_mut().move_and_slide(self.vel, Vector3::new(0.0,1.0,0.0), 0.05, 4.0, deg_to_rad(self.max_slope_angle));
+
 	}
 
 	fn dorping(&mut self) {

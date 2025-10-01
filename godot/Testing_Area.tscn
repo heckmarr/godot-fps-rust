@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwvlifutygybj"]
+[gd_scene load_steps=10 format=3 uid="uid://bwvlifutygybj"]
 
 [ext_resource type="PackedScene" uid="uid://bkuke680elxiv" path="res://Player.tscn" id="1"]
 
@@ -38,6 +38,9 @@ size = Vector3(6, 6, 6)
 
 [sub_resource type="BoxMesh" id="9"]
 size = Vector3(6, 6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5hyv"]
+albedo_color = Color(0.21960784, 1, 0.28627452, 1)
 
 [node name="Testing_Area" type="Node3D"]
 
@@ -103,6 +106,7 @@ shape = SubResource("3")
 
 [node name="OmniLight" type="OmniLight3D" parent="Box"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.005, 0)
+light_color = Color(0.17254902, 1, 0.24705882, 1)
 light_bake_mode = 1
 shadow_enabled = true
 shadow_bias = 0.4
@@ -154,6 +158,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/PurpleCube3"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5hyv")
 
 [node name="PurpleCube4" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85143, 17.1576, 23.1277)

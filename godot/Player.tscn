@@ -449,7 +449,7 @@ visible = false
 cast_shadow = 0
 mesh = SubResource("6")
 
-[node name="Animation_Player" type="AnimationPlayer" parent="Rotation_Helper/Model"]
+[node name="Animation_Player" type="Manager" parent="Rotation_Helper/Model"]
 libraries = {
 &"": SubResource("AnimationLibrary_e80uo")
 }

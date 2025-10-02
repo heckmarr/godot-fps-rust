@@ -7,3 +7,4 @@ unsafe impl ExtensionLibrary for Thinger {}
 
 mod dorp;
 mod player;
+mod animationmanager;

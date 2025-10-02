@@ -3,6 +3,8 @@ use godot::prelude::*;
 use godot::classes::AnimationPlayer;
 use godot::classes::IAnimationPlayer;
 
+use std::collections::HashMap;
+
 #[derive(GodotClass)]
 #[class(base=AnimationPlayer)]
 struct Manager {
@@ -18,12 +20,27 @@ impl IAnimationPlayer for Manager {
 	}
 
 	fn ready(&mut self) {
-		let dorp = vec!("dorpen", "dorpeth", "dorp");
+		let dorp = vec!["dorpen", "dorpeth", "dorp"];
+		let mut dorp_map = HashMap::new();
+		dorp_map.insert("first", dorp[0]);
+		dorp_map.insert("tuesday", dorp[1]);
+		dorp_map.insert("three", dorp[2]);
 		Manager::dorp(dorp);
+		Manager::find_dorp(dorp_map);
 	}
 }
 
 impl Manager {
+	fn find_dorp(to_dorp: HashMap<&str, &str>) {
+		let dorped = vec!("first", "tuesday", "missingno", "three");
+		for &thing in &dorped {
+			match to_dorp.get(thing) {
+				Some(speak) => godot_print!("{speak}"),
+				None => godot_print!("{thing} is no thing to dorp!")
+			}
+		}
+	}
+
 	fn dorp(to_dorp: Vec<&str>) {
 		let d = &to_dorp[0];
 		let dd = &to_dorp[1];

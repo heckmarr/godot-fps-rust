@@ -18,12 +18,17 @@ impl IAnimationPlayer for Manager {
 	}
 
 	fn ready(&mut self) {
-		self.dorp();
+		let dorp = vec!("dorpen", "dorpeth", "dorp");
+		Manager::dorp(dorp);
 	}
 }
 
 impl Manager {
-	fn dorp(&mut self) {
-		godot_print!("Dorpen dorp dorp");
+	fn dorp(to_dorp: Vec<&str>) {
+		let d = &to_dorp[0];
+		let dd = &to_dorp[1];
+		let ddd = &to_dorp[2];
+
+		godot_print!("{d}, {dd}, {ddd}");
 	}
 }

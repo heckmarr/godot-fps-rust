@@ -33,10 +33,14 @@ impl IAnimationPlayer for Manager {
 impl Manager {
 	fn find_dorp(to_dorp: HashMap<&str, &str>) {
 		let dorped = vec!("first", "tuesday", "missingno", "three");
+		let mut dor = Vec::new();
 		for &thing in &dorped {
 			match to_dorp.get(thing) {
-				Some(speak) => godot_print!("{speak}"),
+				Some(speak) => dor.push(speak),
 				None => godot_print!("{thing} is no thing to dorp!")
+			}
+			for d in &dor {
+				godot_print!("{d}!");
 			}
 		}
 	}

@@ -125,7 +125,7 @@ impl Manager {
 				if animation_in != "".to_string() {
 					self.current_state = animation_name.clone();
 					let speed = self.animation_speeds[&animation_name];
-					self.base_mut().play_ex().name(&animation_name).custom_speed(speed).done();
+					self.base_mut().play_ex().name(&animation_name).custom_speed(speed).custom_blend(-1.0).done();
 					return true;
 				}else {
 					godot_print!("AnimationPlayer manager: WARNING: Cannot change to {animation_name}");
@@ -135,7 +135,7 @@ impl Manager {
 			}else {
 				self.current_state = animation_name.clone();
 				let speed = self.animation_speeds[&animation_name];
-				self.base_mut().play_ex().name(&animation_name).custom_speed(speed).done();
+				self.base_mut().play_ex().name(&animation_name).custom_speed(speed).custom_blend(-1.0).done();
 				return true;
 			}
 		}

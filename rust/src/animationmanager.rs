@@ -13,8 +13,33 @@ struct Manager {
 	states: HashMap<String, Vec<String>>,
 	current_state: String,
 	animation_speeds: HashMap<String, f32>,
+	callback_processor: Processor,
 	base: Base<AnimationPlayer>
 }
+
+type Callback = fn();
+
+struct Processor {
+	callback: Callback,
+}
+impl Processor {
+	fn new() -> Self {
+		Self{
+			callback: animation_callback
+		}
+	}
+	fn set_callback(&mut self, c: Callback) {
+		self.callback = c;
+	}
+	fn process_events(&mut self) {
+		(self.callback)();
+	}
+}
+
+fn animation_callback() {
+	godot_print!("callback fired!");
+}
+
 
 #[godot_api]
 impl IAnimationPlayer for Manager {
@@ -62,13 +87,14 @@ impl IAnimationPlayer for Manager {
 			current_state: "".to_string(),
 			animation_speeds: anim_speed,
 			states: state,
-
+			callback_processor: Processor::new(),
 
 			base
 		}
 	}
 
 	fn ready(&mut self) {
+		self.callback_processor.process_events();
 		self.set_animation("idle_unarmed".to_string());
 		self.signals().animation_finished().connect_self(Manager::animation_ended);
 	}
@@ -78,7 +104,6 @@ impl IAnimationPlayer for Manager {
 impl Manager {
 	#[signal]
 	fn dorp();
-
 	fn set_animation(&mut self, animation_name: String) -> bool {
 		
 		
@@ -119,41 +144,41 @@ impl Manager {
 	
 	fn animation_ended(&mut self, animation_name: StringName) {
 		// UNARMED transitions
-		if self.current_state == "idle_unarmed" {
+		if self.current_state == "Idle_unarmed".to_string() {
 			//pass
 		}
 		// KNIFE transitions
-		else if self.current_state == "knife_equip" {
-			self.set_animation("knife_idle".to_string());
-		}else if self.current_state == "knife_idle" {
+		else if self.current_state == "Knife_equip".to_string() {
+			self.set_animation("Knife_idle".to_string());
+		}else if self.current_state == "Knife_idle".to_string() {
 			//pass
-		}else if self.current_state == "knife_fire" {
-			self.set_animation("knife_idle".to_string());
-		}else if self.current_state == "knife_unequip" {
-			self.set_animation("idle_unarmed".to_string());
+		}else if self.current_state == "Knife_fire".to_string() {
+			self.set_animation("Knife_idle".to_string());
+		}else if self.current_state == "Knife_unequip".to_string() {
+			self.set_animation("Idle_unarmed".to_string());
 		}
 		// PISTOL transitions
-		else if self.current_state == "pistol_equip" {
-			self.set_animation("pistol_idle".to_string());
-		}else if self.current_state == "pistol_idle" {
+		else if self.current_state == "Pistol_equip".to_string() {
+			self.set_animation("Pistol_idle".to_string());
+		}else if self.current_state == "Pistol_idle".to_string() {
 			//pass
-		}else if self.current_state == "pistol_fire" {
-			self.set_animation("pistol_idle".to_string());
-		}else if self.current_state == "pistol_unequip"{
-			self.set_animation("idle_unarmed".to_string());
-		}else if self.current_state == "pistol_reload"{
-			self.set_animation("pistol_idle".to_string());
+		}else if self.current_state == "Pistol_fire".to_string() {
+			self.set_animation("Pistol_idle".to_string());
+		}else if self.current_state == "Pistol_unequip".to_string(){
+			self.set_animation("Idle_unarmed".to_string());
+		}else if self.current_state == "Pistol_reload".to_string(){
+			self.set_animation("Pistol_idle".to_string());
 		// RIFLE transitions
-		}else if self.current_state == "rifle_equip" {
-			self.set_animation("rifle_idle".to_string());
-		}else if self.current_state == "rifle_idle" {
+		}else if self.current_state == "Rifle_equip".to_string() {
+			self.set_animation("Rifle_idle".to_string());
+		}else if self.current_state == "Rifle_idle".to_string() {
 			//pass
-		}else if self.current_state == "rifle_fire" {
-			self.set_animation("rifle_idle".to_string());
-		}else if self.current_state == "rifle_unequip" {
-			self.set_animation("idle_unarmed".to_string());
-		}else if self.current_state == "rifle_reload"{
-			self.set_animation("rifle_idle".to_string());
+		}else if self.current_state == "Rifle_fire".to_string() {
+			self.set_animation("Rifle_idle".to_string());
+		}else if self.current_state == "Rifle_unequip".to_string() {
+			self.set_animation("Idle_unarmed".to_string());
+		}else if self.current_state == "Rifle_reload".to_string(){
+			self.set_animation("Rifle_idle".to_string());
 		}
 	}
 }

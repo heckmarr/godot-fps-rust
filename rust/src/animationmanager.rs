@@ -27,14 +27,35 @@ struct Manager {
     knife_idle: Vec<String>,
     knife_unequip:Vec<String>,
 
-
+	animation_speeds: HashMap<String, f32>,
 	base: Base<AnimationPlayer>
 }
 
 #[godot_api]
 impl IAnimationPlayer for Manager {
 	fn init(base: Base<AnimationPlayer>) -> Self {
+		let mut anim_speed = HashMap::new();
+
+		anim_speed.insert("idle_unarmed".to_string(), 1.0);
+
+		anim_speed.insert("pistol_equip".to_string(), 1.4);
+		anim_speed.insert("pistol_fire".to_string(), 1.8);
+		anim_speed.insert("pistol_idle".to_string(), 1.0);
+		anim_speed.insert("pistol_reload".to_string(), 1.0);
+		anim_speed.insert("pistol_unequip".to_string(), 1.4);
+
+		anim_speed.insert("rifle_equip".to_string(), 2.0);
+		anim_speed.insert("rifle_fire".to_string(), 6.0);
+		anim_speed.insert("rifle_idle".to_string(), 1.0);
+		anim_speed.insert("rifle_reload".to_string(), 1.45);
+		anim_speed.insert("rifle_unequip".to_string(), 2.0);
+
+		anim_speed.insert("knife_equip".to_string(), 1.0);
+		anim_speed.insert("knife_fire".to_string(), 1.35);
+		anim_speed.insert("knife_idle".to_string(), 1.0);
+		anim_speed.insert("knife_unequip".to_string(), 1.0);
 		Self {
+			animation_speeds: anim_speed,
 			idle_unarmed: vec!["knife_equip".to_string(), "pistol_equip".to_string(), "rifle_equip".to_string(), "idle_unarmed".to_string()],
 
 			pistol_equip:vec!["pistol_idle".to_string()],
@@ -53,6 +74,9 @@ impl IAnimationPlayer for Manager {
 			knife_fire:vec!["knife_idle".to_string()],
 			knife_idle:vec!["knife_fire".to_string(), "knife_unequip".to_string(), "knife_idle".to_string()],
 			knife_unequip:vec!["idle_unarmed".to_string()],
+
+
+
 
 			base
 		}

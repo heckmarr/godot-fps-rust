@@ -3,30 +3,15 @@ use godot::prelude::*;
 use godot::classes::AnimationPlayer;
 use godot::classes::IAnimationPlayer;
 
+use godot::meta::AsArg;
+
 use std::collections::HashMap;
 
 #[derive(GodotClass)]
 #[class(base=AnimationPlayer)]
 struct Manager {
-    idle_unarmed:Vec<String>,
-
-    pistol_equip:Vec<String>,
-    pistol_fire:Vec<String>,
-    pistol_idle:Vec<String>,
-    pistol_reload:Vec<String>,
-    pistol_unequip:Vec<String>,
-
-    rifle_equip:Vec<String>,
-    rifle_fire:Vec<String>,
-    rifle_idle:Vec<String>,
-    rifle_reload:Vec<String>,
-    rifle_unequip:Vec<String>,
-
-    knife_equip: Vec<String>,
-    knife_fire: Vec<String>,
-    knife_idle: Vec<String>,
-    knife_unequip:Vec<String>,
-
+	states: HashMap<String, Vec<String>>,
+	current_state: String,
 	animation_speeds: HashMap<String, f32>,
 	base: Base<AnimationPlayer>
 }
@@ -36,46 +21,47 @@ impl IAnimationPlayer for Manager {
 	fn init(base: Base<AnimationPlayer>) -> Self {
 		let mut anim_speed = HashMap::new();
 
-		anim_speed.insert("idle_unarmed".to_string(), 1.0);
+		anim_speed.insert("Idle_unarmed".to_string(), 1.0);
 
-		anim_speed.insert("pistol_equip".to_string(), 1.4);
-		anim_speed.insert("pistol_fire".to_string(), 1.8);
-		anim_speed.insert("pistol_idle".to_string(), 1.0);
-		anim_speed.insert("pistol_reload".to_string(), 1.0);
-		anim_speed.insert("pistol_unequip".to_string(), 1.4);
+		anim_speed.insert("Pistol_equip".to_string(), 1.4);
+		anim_speed.insert("Pistol_fire".to_string(), 1.8);
+		anim_speed.insert("Pistol_idle".to_string(), 1.0);
+		anim_speed.insert("Pistol_reload".to_string(), 1.0);
+		anim_speed.insert("Pistol_unequip".to_string(), 1.4);
 
-		anim_speed.insert("rifle_equip".to_string(), 2.0);
-		anim_speed.insert("rifle_fire".to_string(), 6.0);
-		anim_speed.insert("rifle_idle".to_string(), 1.0);
-		anim_speed.insert("rifle_reload".to_string(), 1.45);
-		anim_speed.insert("rifle_unequip".to_string(), 2.0);
+		anim_speed.insert("Rifle_equip".to_string(), 2.0);
+		anim_speed.insert("Rifle_fire".to_string(), 6.0);
+		anim_speed.insert("Rifle_idle".to_string(), 1.0);
+		anim_speed.insert("Rifle_reload".to_string(), 1.45);
+		anim_speed.insert("Rifle_unequip".to_string(), 2.0);
 
-		anim_speed.insert("knife_equip".to_string(), 1.0);
-		anim_speed.insert("knife_fire".to_string(), 1.35);
-		anim_speed.insert("knife_idle".to_string(), 1.0);
-		anim_speed.insert("knife_unequip".to_string(), 1.0);
+		anim_speed.insert("Knife_equip".to_string(), 1.0);
+		anim_speed.insert("Knife_fire".to_string(), 1.35);
+		anim_speed.insert("Knife_idle".to_string(), 1.0);
+		anim_speed.insert("Knife_unequip".to_string(), 1.0);
+		let mut state = HashMap::new();
+		state.insert("Idle_unarmed".to_string(), vec!["Knife_equip".to_string(), "Pistol_equip".to_string(), "Rifle_equip".to_string(), "Idle_unarmed".to_string()]);
+
+		state.insert("Pistol_equip".to_string(), vec!["Pistol_idle".to_string()]);
+		state.insert("Pistol_fire".to_string(), vec!["Pistol_idle".to_string()]);
+		state.insert("Pistol_idle".to_string(), vec!["Pistol_fire".to_string(), "Pistol_reload".to_string(), "Pistol_unequip".to_string(), "Pistol_idle".to_string()]);
+		state.insert("Pistol_reload".to_string(), vec!["Pistol_idle".to_string()]);
+		state.insert("Pistol_unequip".to_string(), vec!["Idle_unarmed".to_string()]);
+
+		state.insert("Rifle_equip".to_string(), vec!["Rifle_idle".to_string()]);
+		state.insert("Rifle_fire".to_string(), vec!["Rifle_idle".to_string()]);
+		state.insert("Rifle_idle".to_string(), vec!["Rifle_fire".to_string(), "Rifle_reload".to_string(), "Rifle_unequip".to_string(), "Rifle_idle".to_string()]);
+		state.insert("Rifle_reload".to_string(), vec!["Rifle_idle".to_string()]);
+		state.insert("Rifle_unequip".to_string(), vec!["Idle_unarmed".to_string()]);
+		state.insert("Knife_equip".to_string(), vec!["Knife_idle".to_string()]);
+		state.insert("Knife_fire".to_string(), vec!["Knife_idle".to_string()]);
+		state.insert("Knife_idle".to_string(), vec!["Knife_fire".to_string(), "Knife_unequip".to_string(), "Knife_idle".to_string()]);
+		state.insert("Knife_unequip".to_string(), vec!["Idle_unarmed".to_string()]);
+
 		Self {
+			current_state: "".to_string(),
 			animation_speeds: anim_speed,
-			idle_unarmed: vec!["knife_equip".to_string(), "pistol_equip".to_string(), "rifle_equip".to_string(), "idle_unarmed".to_string()],
-
-			pistol_equip:vec!["pistol_idle".to_string()],
-			pistol_fire:vec!["pistol_idle".to_string()],
-			pistol_idle:vec!["pistol_fire".to_string(), "pistol_reload".to_string(), "pistol_unequip".to_string(), "pistol_idle".to_string()],
-			pistol_reload:vec!["pistol_idle".to_string()],
-			pistol_unequip:vec!["idle_unarmed".to_string()],
-
-			rifle_equip:vec!["rifle_idle".to_string()],
-			rifle_fire:vec!["rifle_idle".to_string()],
-			rifle_idle:vec!["rifle_fire".to_string(), "rifle_reload".to_string(), "rifle_unequip".to_string(), "rifle_idle".to_string()],
-			rifle_reload:vec!["rifle_idle".to_string()],
-			rifle_unequip:vec!["idle_unarmed".to_string()],
-
-			knife_equip:vec!["knife_idle".to_string()],
-			knife_fire:vec!["knife_idle".to_string()],
-			knife_idle:vec!["knife_fire".to_string(), "knife_unequip".to_string(), "knife_idle".to_string()],
-			knife_unequip:vec!["idle_unarmed".to_string()],
-
-
+			states: state,
 
 
 			base
@@ -83,36 +69,68 @@ impl IAnimationPlayer for Manager {
 	}
 
 	fn ready(&mut self) {
-		let dorp = vec!["dorpen", "dorpeth", "dorp"];
-		let mut dorp_map = HashMap::new();
-		dorp_map.insert("first", dorp[0]);
-		dorp_map.insert("tuesday", dorp[1]);
-		dorp_map.insert("three", dorp[2]);
-		Manager::dorp(dorp);
-		Manager::find_dorp(dorp_map);
+		self.set_animation("idle_unarmed".to_string());
+		self.signals().animation_finished().connect_self(Manager::animation_ended);
 	}
 }
 
+#[godot_api]
 impl Manager {
-	fn find_dorp(to_dorp: HashMap<&str, &str>) {
-		let dorped = vec!("first", "tuesday", "missingno", "three");
-		let mut dor = Vec::new();
-		for &thing in &dorped {
-			match to_dorp.get(thing) {
-				Some(speak) => dor.push(speak),
-				None => godot_print!("{thing} is no thing to dorp!")
-			}
-			for d in &dor {
-				godot_print!("{d}!");
+	#[signal]
+	fn dorp();
+
+	fn set_animation(&mut self, animation_name: String) -> bool {
+		if animation_name == self.current_state {
+			godot_print!("AnimationPlayer_manager WARNING: animation is already {animation_name}");
+			return true;
+		}
+
+		if self.base().has_animation(&animation_name) == true {
+			if self.current_state != "" {
+				let possible_animations = &self.states[&self.current_state];
 			}
 		}
+		return false;
 	}
-
-	fn dorp(to_dorp: Vec<&str>) {
-		let d = &to_dorp[0];
-		let dd = &to_dorp[1];
-		let ddd = &to_dorp[2];
-
-		godot_print!("{d}, {dd}, {ddd}");
+	
+	fn animation_ended(&mut self, animation_name: StringName) {
+		// UNARMED transitions
+		if self.current_state == "idle_unarmed" {
+			//pass
+		}
+		// KNIFE transitions
+		else if self.current_state == "knife_equip" {
+			self.set_animation("knife_idle".to_string());
+		}else if self.current_state == "knife_idle" {
+			//pass
+		}else if self.current_state == "knife_fire" {
+			self.set_animation("knife_idle".to_string());
+		}else if self.current_state == "knife_unequip" {
+			self.set_animation("idle_unarmed".to_string());
+		}
+		// PISTOL transitions
+		else if self.current_state == "pistol_equip" {
+			self.set_animation("pistol_idle".to_string());
+		}else if self.current_state == "pistol_idle" {
+			//pass
+		}else if self.current_state == "pistol_fire" {
+			self.set_animation("pistol_idle".to_string());
+		}else if self.current_state == "pistol_unequip"{
+			self.set_animation("idle_unarmed".to_string());
+		}else if self.current_state == "pistol_reload"{
+			self.set_animation("pistol_idle".to_string());
+		// RIFLE transitions
+		}else if self.current_state == "rifle_equip" {
+			self.set_animation("rifle_idle".to_string());
+		}else if self.current_state == "rifle_idle" {
+			//pass
+		}else if self.current_state == "rifle_fire" {
+			self.set_animation("rifle_idle".to_string());
+		}else if self.current_state == "rifle_unequip" {
+			self.set_animation("idle_unarmed".to_string());
+		}else if self.current_state == "rifle_reload"{
+			self.set_animation("rifle_idle".to_string());
+		}
 	}
 }
+

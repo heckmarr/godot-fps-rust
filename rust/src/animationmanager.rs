@@ -7,6 +7,8 @@ use std::collections::HashMap;
 
 #[derive(GodotClass)]
 #[class(base=AnimationPlayer)]
+//This will be a huge object, because it's the entire state machine for the game's
+//animaiton, bear with me while I build this
 struct Manager {
 	base: Base<AnimationPlayer>
 }

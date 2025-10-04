@@ -7,9 +7,27 @@ use std::collections::HashMap;
 
 #[derive(GodotClass)]
 #[class(base=AnimationPlayer)]
-//This will be a huge object, because it's the entire state machine for the game's
-//animaiton, bear with me while I build this
 struct Manager {
+    idle_unarmed:Vec<String>,
+
+    pistol_equip:Vec<String>,
+    pistol_fire:Vec<String>,
+    pistol_idle:Vec<String>,
+    pistol_reload:Vec<String>,
+    pistol_unequip:Vec<String>,
+
+    rifle_equip:Vec<String>,
+    rifle_fire:Vec<String>,
+    rifle_idle:Vec<String>,
+    rifle_reload:Vec<String>,
+    rifle_unequip:Vec<String>,
+
+    knife_equip: Vec<String>,
+    knife_fire: Vec<String>,
+    knife_idle: Vec<String>,
+    knife_unequip:Vec<String>,
+
+
 	base: Base<AnimationPlayer>
 }
 
@@ -17,6 +35,25 @@ struct Manager {
 impl IAnimationPlayer for Manager {
 	fn init(base: Base<AnimationPlayer>) -> Self {
 		Self {
+			idle_unarmed: vec!["knife_equip".to_string(), "pistol_equip".to_string(), "rifle_equip".to_string(), "idle_unarmed".to_string()],
+
+			pistol_equip:vec!["pistol_idle".to_string()],
+			pistol_fire:vec!["pistol_idle".to_string()],
+			pistol_idle:vec!["pistol_fire".to_string(), "pistol_reload".to_string(), "pistol_unequip".to_string(), "pistol_idle".to_string()],
+			pistol_reload:vec!["pistol_idle".to_string()],
+			pistol_unequip:vec!["idle_unarmed".to_string()],
+
+			rifle_equip:vec!["rifle_idle".to_string()],
+			rifle_fire:vec!["rifle_idle".to_string()],
+			rifle_idle:vec!["rifle_fire".to_string(), "rifle_reload".to_string(), "rifle_unequip".to_string(), "rifle_idle".to_string()],
+			rifle_reload:vec!["rifle_idle".to_string()],
+			rifle_unequip:vec!["idle_unarmed".to_string()],
+
+			knife_equip:vec!["knife_idle".to_string()],
+			knife_fire:vec!["knife_idle".to_string()],
+			knife_idle:vec!["knife_fire".to_string(), "knife_unequip".to_string(), "knife_idle".to_string()],
+			knife_unequip:vec!["idle_unarmed".to_string()],
+
 			base
 		}
 	}

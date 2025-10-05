@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwvlifutygybj"]
+[gd_scene load_steps=11 format=3 uid="uid://bwvlifutygybj"]
 
 [ext_resource type="PackedScene" uid="uid://bkuke680elxiv" path="res://Player.tscn" id="1"]
 
@@ -40,7 +40,12 @@ size = Vector3(6, 6, 6)
 size = Vector3(6, 6, 6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5hyv"]
-albedo_color = Color(0.21960784, 1, 0.28627452, 1)
+albedo_color = Color(0.3137255, 0.18039216, 0.50980395, 1)
+normal_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ggsk"]
+albedo_color = Color(0.26666668, 1, 0.3137255, 1)
+normal_enabled = true
 
 [node name="Testing_Area" type="Node3D"]
 
@@ -134,6 +139,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/PurpleCube"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5hyv")
 
 [node name="PurpleCube2" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.23405, 9.95316, 23.1277)
@@ -146,6 +152,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/PurpleCube2"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5hyv")
 
 [node name="PurpleCube3" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85143, 9.95316, 23.1277)
@@ -171,6 +178,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/PurpleCube4"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5hyv")
 
 [node name="PurpleCube5" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85143, 24.1593, 23.1277)
@@ -183,6 +191,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/PurpleCube5"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5hyv")
 
 [node name="PurpleCube6" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451504, 17.9137, 23.1277)
@@ -195,6 +204,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/PurpleCube6"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5hyv")
 
 [node name="GreenCube" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.95316, -21.6551)
@@ -207,6 +217,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/GreenCube"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ggsk")
 
 [node name="GreenCube2" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79916, 9.95316, -21.6551)
@@ -218,6 +229,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/GreenCube2"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ggsk")
 
 [node name="GreenCube3" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.58552, 9.95316, -21.6551)
@@ -230,6 +242,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/GreenCube3"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ggsk")
 
 [node name="GreenCube4" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79556, 17.3734, -21.6551)
@@ -242,6 +255,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/GreenCube4"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ggsk")
 
 [node name="GreenCube5" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51582, 17.3734, -21.6551)
@@ -254,6 +268,7 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/GreenCube5"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ggsk")
 
 [node name="GreenCube6" type="RigidBody3D" parent="Cubes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602769, 24.9266, -21.6551)
@@ -266,3 +281,4 @@ shape = SubResource("8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="Cubes/GreenCube6"]
 mesh = SubResource("9")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ggsk")

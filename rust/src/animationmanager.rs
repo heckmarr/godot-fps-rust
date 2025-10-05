@@ -17,28 +17,23 @@ struct Manager {
 	base: Base<AnimationPlayer>
 }
 
-type Callback = fn();
-
 struct Processor {
-	callback: Callback,
+	callback: Box<dyn FnMut()>,
 }
-impl Processor {
+impl Processor{
 	fn new() -> Self {
-		Self{
-			callback: animation_callback
+		Self {
+			callback: Box::new(Manager::manager_callback)
 		}
 	}
-	fn set_callback(&mut self, c: Callback) {
-		self.callback = c;
+	fn set_callback(&mut self, c: impl FnMut() + 'static ) {
+		self.callback = Box::new(c);
 	}
 	fn process_events(&mut self) {
 		(self.callback)();
 	}
 }
 
-fn animation_callback() {
-	godot_print!("callback fired!");
-}
 
 
 #[godot_api]
@@ -88,12 +83,12 @@ impl IAnimationPlayer for Manager {
 			animation_speeds: anim_speed,
 			states: state,
 			callback_processor: Processor::new(),
-
 			base
 		}
 	}
 
 	fn ready(&mut self) {
+//		self.callback_processor.set_callback(Manager::manager_callback);
 		self.callback_processor.process_events();
 		self.set_animation("idle_unarmed".to_string());
 		self.signals().animation_finished().connect_self(Manager::animation_ended);
@@ -102,6 +97,9 @@ impl IAnimationPlayer for Manager {
 
 #[godot_api]
 impl Manager {
+	fn manager_callback() {
+		godot_print!("I'd like to speak to your task manager.");
+	}
 	#[signal]
 	fn dorp();
 	fn set_animation(&mut self, animation_name: String) -> bool {

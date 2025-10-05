@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://07hxdkmfmqtm"
-path.s3tc="res://.godot/imported/lightblue_equirectangular.png-4443ea404861d24dcbb2f1ada4d083d2.s3tc.ctex"
+uid="uid://45vcrkiu5oig"
+path.s3tc="res://.godot/imported/purplecube.png-ad9f19ce17b9e12428a5ffe0de1706f8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/lightblue_equirectangular.png"
-dest_files=["res://.godot/imported/lightblue_equirectangular.png-4443ea404861d24dcbb2f1ada4d083d2.s3tc.ctex"]
+source_file="res://assets/purplecube.png"
+dest_files=["res://.godot/imported/purplecube.png-ad9f19ce17b9e12428a5ffe0de1706f8.s3tc.ctex"]
 
 [params]
 

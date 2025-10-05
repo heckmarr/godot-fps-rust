@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwvlifutygybj"]
+[gd_scene load_steps=13 format=3 uid="uid://bwvlifutygybj"]
 
 [ext_resource type="PackedScene" uid="uid://bkuke680elxiv" path="res://Player.tscn" id="1"]
+[ext_resource type="Material" path="res://assets/Gamemode_Objects/Metal_One.material" id="2_6ggsk"]
+[ext_resource type="Texture2D" uid="uid://45vcrkiu5oig" path="res://assets/purplecube.png" id="2_x01o8"]
 
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(80, 80)
@@ -40,11 +42,14 @@ size = Vector3(6, 6, 6)
 size = Vector3(6, 6, 6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5hyv"]
-albedo_color = Color(0.3137255, 0.18039216, 0.50980395, 1)
-normal_enabled = true
+next_pass = ExtResource("2_6ggsk")
+albedo_color = Color(0.8509804, 0.18039216, 0.50980395, 1)
+albedo_texture = ExtResource("2_x01o8")
+ao_light_affect = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ggsk"]
 albedo_color = Color(0.26666668, 1, 0.3137255, 1)
+albedo_texture = ExtResource("2_x01o8")
 normal_enabled = true
 
 [node name="Testing_Area" type="Node3D"]

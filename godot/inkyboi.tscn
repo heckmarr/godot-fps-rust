@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7sxavx2wh0"]
+
+[ext_resource type="PackedScene" uid="uid://bj0pfctbjbmiu" path="res://assets/inkyboi/inkyboi.glb" id="1_jy176"]
+
+[node name="inkyboi" instance=ExtResource("1_jy176")]
+
+[node name="brush_UnlitHull_g0_b0_001" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015186891, -0.006720938, -0.59546614)
+
+[node name="brush_UnlitHull_g0_b0_002" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008664146, 0.0058164927, -0.59546614)
+
+[node name="brush_UnlitHull_g0_b0_003" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018773198, -0.018179622, -0.59546614)
+
+[node name="brush_UnlitHull_g0_b0_007" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02925881, 0.003932988, -0.59546614)
+
+[node name="brush_UnlitHull_g0_b0_008" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036667623, -0.0043729357, -0.59546614)
+
+[node name="brush_UnlitHull_g0_b0_009" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05556617, 0.0021112487, -0.59546614)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://bkuke680elxiv"]
 
-[ext_resource type="PackedScene" uid="uid://bj0pfctbjbmiu" path="res://assets/inkyboi/inkyboi.glb" id="1_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://b7sxavx2wh0" path="res://inkyboi.tscn" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://ehtf2xcs4m80" path="res://assets/32-32_white.png" id="7"]
 
 [sub_resource type="CapsuleShape3D" id="1"]

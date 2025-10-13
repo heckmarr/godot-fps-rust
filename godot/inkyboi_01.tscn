@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg6npp72l557r"]
+
+[ext_resource type="PackedScene" uid="uid://bj0pfctbjbmiu" path="res://assets/inkyboi/inkyboi.glb" id="1_5rpro"]
+
+[node name="inkyboi" instance=ExtResource("1_5rpro")]

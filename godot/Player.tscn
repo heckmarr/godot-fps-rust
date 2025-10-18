@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://bkuke680elxiv"]
+[gd_scene load_steps=23 format=3 uid="uid://bkuke680elxiv"]
 
+[ext_resource type="PackedScene" uid="uid://hx17r71yytfp" path="res://assets/balls.glb" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://ehtf2xcs4m80" path="res://assets/32-32_white.png" id="7"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
@@ -356,6 +357,9 @@ bones/33/enabled = true
 bones/33/position = Vector3(0.830577, 6.71741, 1.87604)
 bones/33/rotation = Quaternion(0, 0, -1.192095e-07, 1)
 bones/33/scale = Vector3(1, 1, 1)
+
+[node name="balls" parent="Rotation_Helper/Model/Armature/Skeleton" instance=ExtResource("1_kpjcp")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Animation_Player" type="Manager" parent="Rotation_Helper/Model"]
 libraries = {

@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://buv2crrsvjwih"]
 
-[ext_resource type="PackedScene" uid="uid://bxsu4xf42hwj1" path="res://assets/juggling/juggling.glb" id="1_8x3qk"]
+[ext_resource type="PackedScene" uid="uid://b6a22wgqrce3w" path="res://assets/juggling/juggling.glb" id="1_8x3qk"]
 
 [node name="juggling" instance=ExtResource("1_8x3qk")]

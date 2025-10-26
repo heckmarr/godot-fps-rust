@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Godot FPS"
 run/main_scene="res://Testing_Area.tscn"
-config/features=PackedStringArray("4.5")
+config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
 [display]

@@ -99,25 +99,25 @@ size = Vector3(3, 4, 3)
 radius = 1.0
 height = 2.0
 
-[node name="Player" type="Player"]
+[node name="Player" type="Player" unique_id=1430332660]
 
-[node name="Body_CollisionShape" type="CollisionShape3D" parent="."]
+[node name="Body_CollisionShape" type="CollisionShape3D" parent="." unique_id=1729412897]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.81098, 0)
 shape = SubResource("1")
 
-[node name="Feet_CollisionShape" type="CollisionShape3D" parent="."]
+[node name="Feet_CollisionShape" type="CollisionShape3D" parent="." unique_id=1739859833]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.493176, 0)
 shape = SubResource("2")
 
-[node name="Rotation_Helper" type="Node3D" parent="."]
+[node name="Rotation_Helper" type="Node3D" parent="." unique_id=939677514]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0)
 
-[node name="Model" type="Node3D" parent="Rotation_Helper"]
+[node name="Model" type="Node3D" parent="Rotation_Helper" unique_id=674845661]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.405, 0)
 
-[node name="Armature" type="Node3D" parent="Rotation_Helper/Model"]
+[node name="Armature" type="Node3D" parent="Rotation_Helper/Model" unique_id=607539132]
 
-[node name="Skeleton" type="Skeleton3D" parent="Rotation_Helper/Model/Armature"]
+[node name="Skeleton" type="Skeleton3D" parent="Rotation_Helper/Model/Armature" unique_id=592247036]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 9.99256, 0)
@@ -357,51 +357,51 @@ bones/33/position = Vector3(0.830577, 6.71741, 1.87604)
 bones/33/rotation = Quaternion(0, 0, -1.192095e-07, 1)
 bones/33/scale = Vector3(1, 1, 1)
 
-[node name="Animation_Player" type="Manager" parent="Rotation_Helper/Model"]
+[node name="Animation_Player" type="Manager" parent="Rotation_Helper/Model" unique_id=1001509469]
 libraries = {
 &"": SubResource("AnimationLibrary_e80uo")
 }
-autoplay = "Idle_unarmed"
+autoplay = &"Idle_unarmed"
 
-[node name="Camera" type="Camera3D" parent="Rotation_Helper"]
+[node name="Camera" type="Camera3D" parent="Rotation_Helper" unique_id=424451744]
 transform = Transform3D(-1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, -0.307539, -0.0646362)
 current = true
 fov = 90.0
 far = 180.0
 
-[node name="Gun_Fire_Points" type="Node3D" parent="Rotation_Helper"]
+[node name="Gun_Fire_Points" type="Node3D" parent="Rotation_Helper" unique_id=522025950]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.3914, 0)
 
-[node name="Rifle_Point" type="Node3D" parent="Rotation_Helper/Gun_Fire_Points"]
+[node name="Rifle_Point" type="Node3D" parent="Rotation_Helper/Gun_Fire_Points" unique_id=335954193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163315, 10.4607, 7.04431)
 
-[node name="Ray_Cast" type="RayCast3D" parent="Rotation_Helper/Gun_Fire_Points/Rifle_Point"]
+[node name="Ray_Cast" type="RayCast3D" parent="Rotation_Helper/Gun_Fire_Points/Rifle_Point" unique_id=303475189]
 enabled = false
 
-[node name="Knife_Point" type="Node3D" parent="Rotation_Helper/Gun_Fire_Points"]
+[node name="Knife_Point" type="Node3D" parent="Rotation_Helper/Gun_Fire_Points" unique_id=1987381881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163315, 10.4607, 2.54082)
 
-[node name="Area" type="Area3D" parent="Rotation_Helper/Gun_Fire_Points/Knife_Point"]
+[node name="Area" type="Area3D" parent="Rotation_Helper/Gun_Fire_Points/Knife_Point" unique_id=1635526278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.17163, 1.26893)
 input_ray_pickable = false
 angular_damp = 1.0
 
-[node name="Collision_Shape" type="CollisionShape3D" parent="Rotation_Helper/Gun_Fire_Points/Knife_Point/Area"]
+[node name="Collision_Shape" type="CollisionShape3D" parent="Rotation_Helper/Gun_Fire_Points/Knife_Point/Area" unique_id=554276080]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.300034)
 shape = SubResource("22")
 
-[node name="Pistol_Point" type="Node3D" parent="Rotation_Helper/Gun_Fire_Points"]
+[node name="Pistol_Point" type="Node3D" parent="Rotation_Helper/Gun_Fire_Points" unique_id=341361571]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.436506, 11.3604, 4.77607)
 
-[node name="Gun_Aim_Point" type="Node3D" parent="Rotation_Helper"]
+[node name="Gun_Aim_Point" type="Node3D" parent="Rotation_Helper" unique_id=1476453838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.307539, 20.0487)
 
-[node name="MeshInstance" type="MeshInstance3D" parent="Rotation_Helper/Gun_Aim_Point"]
+[node name="MeshInstance" type="MeshInstance3D" parent="Rotation_Helper/Gun_Aim_Point" unique_id=643392671]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("23")
 
-[node name="Flashlight" type="SpotLight3D" parent="Rotation_Helper"]
+[node name="Flashlight" type="SpotLight3D" parent="Rotation_Helper" unique_id=1825319126]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.307539, -0.0646362)
 light_color = Color(1, 0.915375, 0.769531, 1)
 light_energy = 0.8
@@ -411,10 +411,10 @@ spot_range = 30.0
 spot_attenuation = 2.0
 spot_angle = 50.0
 
-[node name="Grenade_Toss_Pos" type="Node3D" parent="Rotation_Helper"]
+[node name="Grenade_Toss_Pos" type="Node3D" parent="Rotation_Helper" unique_id=866579613]
 transform = Transform3D(1, 0, 0, 0, 0.983001, 0.1836, 0, -0.1836, 0.983001, 0, -0.411827, 1.2795)
 
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control" parent="." unique_id=2123895950]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -422,7 +422,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Crosshair" type="Control" parent="HUD"]
+[node name="Crosshair" type="Control" parent="HUD" unique_id=1070645377]
 modulate = Color(1, 1, 1, 0.705882)
 anchors_preset = 0
 anchor_left = 0.5
@@ -430,7 +430,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="Bottom_IMG" type="TextureRect" parent="HUD/Crosshair"]
+[node name="Bottom_IMG" type="TextureRect" parent="HUD/Crosshair" unique_id=1097786213]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -439,7 +439,7 @@ anchor_bottom = 0.5
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="Top_IMG" type="TextureRect" parent="HUD/Crosshair"]
+[node name="Top_IMG" type="TextureRect" parent="HUD/Crosshair" unique_id=596060665]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -448,7 +448,7 @@ anchor_bottom = 0.5
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="Left_IMG" type="TextureRect" parent="HUD/Crosshair"]
+[node name="Left_IMG" type="TextureRect" parent="HUD/Crosshair" unique_id=2115273526]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -457,7 +457,7 @@ anchor_bottom = 0.5
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="Right_IMG" type="TextureRect" parent="HUD/Crosshair"]
+[node name="Right_IMG" type="TextureRect" parent="HUD/Crosshair" unique_id=267410317]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -466,28 +466,28 @@ anchor_bottom = 0.5
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="Panel" type="Panel" parent="HUD"]
+[node name="Panel" type="Panel" parent="HUD" unique_id=285886260]
 modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 0
 
-[node name="Panel_border" type="Panel" parent="HUD/Panel"]
+[node name="Panel_border" type="Panel" parent="HUD/Panel" unique_id=1581599118]
 modulate = Color(0.679688, 0.679688, 0.679688, 1)
 show_behind_parent = true
 layout_mode = 0
 
-[node name="Gun_label" type="Label" parent="HUD/Panel"]
+[node name="Gun_label" type="Label" parent="HUD/Panel" unique_id=352933250]
 self_modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 0
 text = "Health: 100
 Ammo: 000/000
 "
 
-[node name="Death_Screen" type="ColorRect" parent="HUD"]
+[node name="Death_Screen" type="ColorRect" parent="HUD" unique_id=1239351043]
 visible = false
 layout_mode = 0
 color = Color(0.140625, 0.140625, 0.140625, 0.901961)
 
-[node name="Label" type="Label" parent="HUD/Death_Screen"]
+[node name="Label" type="Label" parent="HUD/Death_Screen" unique_id=859333279]
 layout_mode = 0
 text = "You died
 0.00 seconds till respawn"

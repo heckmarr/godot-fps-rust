@@ -909,7 +909,7 @@
 					}
 				}
 			],
-			"name":"Unequip_sword",
+			"name":"Fire_sword",
 			"samplers":[
 				{
 					"input":51,
@@ -1072,8 +1072,8 @@
 					"output":53
 				},
 				{
-					"input":62,
-					"interpolation":"LINEAR",
+					"input":51,
+					"interpolation":"STEP",
 					"output":64
 				},
 				{
@@ -1117,8 +1117,8 @@
 					"output":53
 				},
 				{
-					"input":62,
-					"interpolation":"LINEAR",
+					"input":51,
+					"interpolation":"STEP",
 					"output":67
 				},
 				{
@@ -1127,13 +1127,13 @@
 					"output":68
 				},
 				{
-					"input":62,
-					"interpolation":"LINEAR",
+					"input":51,
+					"interpolation":"STEP",
 					"output":69
 				},
 				{
-					"input":62,
-					"interpolation":"LINEAR",
+					"input":51,
+					"interpolation":"STEP",
 					"output":70
 				}
 			]
@@ -1844,7 +1844,7 @@
 				1.3333333333333333
 			],
 			"min":[
-				0.041666666666666664
+				0.08333333333333333
 			],
 			"type":"SCALAR"
 		},
@@ -1911,25 +1911,25 @@
 		{
 			"bufferView":62,
 			"componentType":5126,
-			"count":32,
+			"count":31,
 			"max":[
 				1.3333333333333333
 			],
 			"min":[
-				0.041666666666666664
+				0.08333333333333333
 			],
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":63,
 			"componentType":5126,
-			"count":32,
+			"count":31,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":64,
 			"componentType":5126,
-			"count":32,
+			"count":2,
 			"type":"VEC3"
 		},
 		{
@@ -1947,25 +1947,25 @@
 		{
 			"bufferView":67,
 			"componentType":5126,
-			"count":32,
+			"count":2,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":68,
 			"componentType":5126,
-			"count":32,
+			"count":31,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":69,
 			"componentType":5126,
-			"count":32,
+			"count":2,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":70,
 			"componentType":5126,
-			"count":32,
+			"count":2,
 			"type":"VEC3"
 		},
 		{
@@ -2423,129 +2423,129 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":128,
+			"byteLength":124,
 			"byteOffset":556984
 		},
 		{
 			"buffer":0,
-			"byteLength":384,
-			"byteOffset":557112
-		},
-		{
-			"buffer":0,
-			"byteLength":384,
-			"byteOffset":557496
+			"byteLength":372,
+			"byteOffset":557108
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":557880
+			"byteOffset":557480
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":557904
+			"byteOffset":557504
 		},
 		{
 			"buffer":0,
-			"byteLength":384,
-			"byteOffset":557928
+			"byteLength":24,
+			"byteOffset":557528
 		},
 		{
 			"buffer":0,
-			"byteLength":384,
-			"byteOffset":558312
+			"byteLength":24,
+			"byteOffset":557552
 		},
 		{
 			"buffer":0,
-			"byteLength":512,
-			"byteOffset":558696
+			"byteLength":372,
+			"byteOffset":557576
 		},
 		{
 			"buffer":0,
-			"byteLength":384,
-			"byteOffset":559208
+			"byteLength":32,
+			"byteOffset":557948
 		},
 		{
 			"buffer":0,
-			"byteLength":64,
-			"byteOffset":559592
-		},
-		{
-			"buffer":0,
-			"byteLength":64,
-			"byteOffset":559656
+			"byteLength":24,
+			"byteOffset":557980
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":559720
+			"byteOffset":558004
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":559784
+			"byteOffset":558068
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":559848
+			"byteOffset":558132
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":559912
+			"byteOffset":558196
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":559976
+			"byteOffset":558260
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560040
+			"byteOffset":558324
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560104
+			"byteOffset":558388
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560168
+			"byteOffset":558452
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560232
+			"byteOffset":558516
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560296
+			"byteOffset":558580
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560360
+			"byteOffset":558644
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560424
+			"byteOffset":558708
 		},
 		{
 			"buffer":0,
 			"byteLength":64,
-			"byteOffset":560488
+			"byteOffset":558772
+		},
+		{
+			"buffer":0,
+			"byteLength":64,
+			"byteOffset":558836
+		},
+		{
+			"buffer":0,
+			"byteLength":64,
+			"byteOffset":558900
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":560552,
-			"uri":"Unequip_sword.bin"
+			"byteLength":558964,
+			"uri":"Fire_sword.bin"
 		}
 	]
 }

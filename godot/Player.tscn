@@ -1,6 +1,21 @@
-[gd_scene load_steps=22 format=3 uid="uid://bkuke680elxiv"]
+[gd_scene load_steps=37 format=3 uid="uid://bkuke680elxiv"]
 
+[ext_resource type="PackedScene" uid="uid://dbt6bwgesucvx" path="res://assets/juggling/completed-player/Equip_pistol.gltf" id="1_jatw7"]
+[ext_resource type="PackedScene" uid="uid://dulycg3dcx7wy" path="res://assets/juggling/completed-player/Equip_rifle.gltf" id="2_rv870"]
+[ext_resource type="PackedScene" uid="uid://bvxgg2u2w7l6y" path="res://assets/juggling/completed-player/Equip_sword.gltf" id="3_efikj"]
+[ext_resource type="PackedScene" uid="uid://cndccmgvp8t3m" path="res://assets/juggling/completed-player/Fire_pistol.gltf" id="4_itxgx"]
+[ext_resource type="PackedScene" uid="uid://cbdgd8407g107" path="res://assets/juggling/completed-player/Fire_rifle.gltf" id="5_cgsek"]
+[ext_resource type="PackedScene" uid="uid://e12jlbcaglc0" path="res://assets/juggling/completed-player/Fire_sword.gltf" id="6_0pi4m"]
 [ext_resource type="Texture2D" uid="uid://ehtf2xcs4m80" path="res://assets/32-32_white.png" id="7"]
+[ext_resource type="PackedScene" uid="uid://bibbhxlo6icwc" path="res://assets/juggling/completed-player/Idle_pistol.gltf" id="7_sg6sq"]
+[ext_resource type="PackedScene" uid="uid://xltnwnqjno5n" path="res://assets/juggling/completed-player/Idle_rifle.gltf" id="8_h84ma"]
+[ext_resource type="PackedScene" uid="uid://dbchhdulo58x0" path="res://assets/juggling/completed-player/Idle_sword.gltf" id="9_47wu6"]
+[ext_resource type="PackedScene" uid="uid://jg4q1vpkpgnh" path="res://assets/juggling/completed-player/Idle_unarmed.gltf" id="10_2n1s8"]
+[ext_resource type="PackedScene" uid="uid://cbn386t6mksjb" path="res://assets/juggling/completed-player/Reload_pistol.gltf" id="11_3vjad"]
+[ext_resource type="PackedScene" uid="uid://douj2v5f8e0hh" path="res://assets/juggling/completed-player/Reload_rifle.gltf" id="12_yt0h1"]
+[ext_resource type="PackedScene" uid="uid://bgvswnfghfqjc" path="res://assets/juggling/completed-player/Unequip_pistol.gltf" id="13_vd78s"]
+[ext_resource type="PackedScene" uid="uid://fu4oaw3adl2g" path="res://assets/juggling/completed-player/Unequip_rifle.gltf" id="14_ictha"]
+[ext_resource type="PackedScene" uid="uid://yvcw2s7iq0q6" path="res://assets/juggling/completed-player/Unequip_sword.gltf" id="15_1jgrc"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 1.2
@@ -362,6 +377,65 @@ libraries = {
 &"": SubResource("AnimationLibrary_e80uo")
 }
 autoplay = &"Idle_unarmed"
+
+[node name="Equip_pistol" parent="Rotation_Helper/Model" unique_id=600672624 instance=ExtResource("1_jatw7")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Equip_rifle" parent="Rotation_Helper/Model" unique_id=1846872613 instance=ExtResource("2_rv870")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Equip_sword" parent="Rotation_Helper/Model" unique_id=1316411938 instance=ExtResource("3_efikj")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Fire_pistol" parent="Rotation_Helper/Model" unique_id=1860436118 instance=ExtResource("4_itxgx")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Fire_rifle" parent="Rotation_Helper/Model" unique_id=578534171 instance=ExtResource("5_cgsek")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Fire_sword" parent="Rotation_Helper/Model" unique_id=1234340903 instance=ExtResource("6_0pi4m")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Idle_pistol" parent="Rotation_Helper/Model" unique_id=1227632407 instance=ExtResource("7_sg6sq")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Idle_rifle" parent="Rotation_Helper/Model" unique_id=81706455 instance=ExtResource("8_h84ma")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Idle_sword" parent="Rotation_Helper/Model" unique_id=1850730153 instance=ExtResource("9_47wu6")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Idle_unarmed" parent="Rotation_Helper/Model" unique_id=153122388 instance=ExtResource("10_2n1s8")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Reload_pistol" parent="Rotation_Helper/Model" unique_id=539046475 instance=ExtResource("11_3vjad")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Reload_rifle" parent="Rotation_Helper/Model" unique_id=2000307960 instance=ExtResource("12_yt0h1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Unequip_pistol" parent="Rotation_Helper/Model" unique_id=1619443337 instance=ExtResource("13_vd78s")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Unequip_rifle" parent="Rotation_Helper/Model" unique_id=1907526502 instance=ExtResource("14_ictha")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+
+[node name="Unequip_sword" parent="Rotation_Helper/Model" unique_id=947687306 instance=ExtResource("15_1jgrc")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
 
 [node name="Camera" type="Camera3D" parent="Rotation_Helper" unique_id=424451744]
 transform = Transform3D(-1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, -0.307539, -0.0646362)
